@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" />
+    <style>
+      body,
+      div {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        position: relative;
+        display: flex;
+        flex: 1;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background: #21b8cc url(floter.JPG);
+        background-size: cover;
+      }
+      .watch-container {
+        width: 30rem;
+        height: 30rem;
+        padding: 20px;
+        border: 20px solid #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 0 16px rgba(0,0,0,0.7);
+        background: rgba(0, 0, 0, 0.4)
+      }
+      .watch-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .handler {
+        position: absolute;
+        width: 50%;
+        height: 4px;
+        top: 50%;
+        right: 50%;
+        background: #f7f5f5;
+        box-shadow: 0 0 0 0.1px #fff, 0 0 0 1px rgba(0, 0, 0, 0.1),
+          0 0 5px rgba(0, 0, 0, 0.4), 2px 2px 1px rgba(0, 0, 0, 0.5);
+        transform-origin: 100% 50%; 
+        transform: rotate(90deg);
+        transition-timing-function: cubic-bezier(0.9, 0.54, 0.26, 1.68);
+      }
+      .watch-face::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        content: " ";
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 1px solid #fff;
+        background: #8d8d8d;
+      }
+      .watch-second {
+        height: 2px;
+        margin-top: -1px;
+        border-bottom-left-radius: 100%;
+        border-top-left-radius: 100%;
+        transition: all 1s linear;
+        background-color: rgb(250, 107, 24);
+      }
+      .watch-minute {
+        width: 45%;
+        height: 5px;
+        margin-top: -2.5px;
+        transition: all 1s linear;
+      }
+      .watch-hour {
+        width: 40%;
+        height: 10px;
+        margin-top: -5px;
+        border-bottom-left-radius: 0.5em;
+        border-top-left-radius: 0.5em;
+        transition: all 3s ease-out;
+      }
+      .my-boby {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        font-size: 32px;
+        font-weight: 700;
+        color: antiquewhite;
+        transform: translate(-50%,-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="watch-container">
+      <div class="watch-face">
+        <div class="my-boby">你好啊 晶宝贝!</div>
+        <div class="handler watch-second"></div>
+        <div class="handler watch-minute"></div>
+        <div class="handler watch-hour"></div>
+      </div>
+    </div>
+    <script>
+      let secondDeg = 0,
+        minDeg = 0,
+        hourDeg = 0;
+      let secondDOM = document.querySelector(".watch-second");
+      let minuteDOM = document.querySelector(".watch-minute");
+      let hourDOM = document.querySelector(".watch-hour");
+      function initDate() {
+        let now = new Date();
+        let s = now.getSeconds();
+        let m = now.getMinutes();
+        let h = now.getHours();
+        secondDeg = 90 + (s / 60) * 360;
+        minDeg = 90 + (m / 60) * 360 + (s / 60 / 60) * 360;
+        hourDeg =
+          90 + (h / 12) * 360 + (m / 60 / 12) * 360 + (s / 60 / 60 / 12) * 360;
+      }
+      function update() {
+        secondDeg += (1 / 60) * 360;
+        minDeg += (1 / 60 / 60) * 360;
+        hourDeg += (1 / 60 / 60 / 12) * 360;
+        secondDOM.style.transform = `rotate(${secondDeg}deg)`;
+        minuteDOM.style.transform = `rotate(${minDeg}deg)`;
+        hourDOM.style.transform = `rotate(${hourDeg}deg)`;
+      }
+      initDate();
+      setInterval(update, 1000);
+    </script>
+  </body>
+</html>
