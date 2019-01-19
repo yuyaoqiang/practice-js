@@ -20,8 +20,6 @@
         height: 100vh;
         justify-content: center;
         align-items: center;
-        background: #21b8cc url(floter.JPG);
-        background-size: cover;
       }
       .watch-container {
         width: 30rem;
@@ -30,10 +28,15 @@
         border: 20px solid #ffffff;
         border-radius: 50%;
         box-shadow: 0 0 16px rgba(0,0,0,0.7);
-        background: rgba(0, 0, 0, 0.4)
+        background-image: url("./5.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
       }
       .watch-face {
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         height: 100%;
       }
@@ -49,18 +52,6 @@
         transform-origin: 100% 50%; 
         transform: rotate(90deg);
         transition-timing-function: cubic-bezier(0.9, 0.54, 0.26, 1.68);
-      }
-      .watch-face::after {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 1.5rem;
-        height: 1.5rem;
-        content: " ";
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        border: 1px solid #fff;
-        background: #8d8d8d;
       }
       .watch-second {
         height: 2px;
@@ -84,21 +75,90 @@
         border-top-left-radius: 0.5em;
         transition: all 3s ease-out;
       }
-      .my-boby {
-        position: absolute;
-        top: 70%;
-        left: 50%;
-        font-size: 32px;
-        font-weight: 700;
-        color: antiquewhite;
-        transform: translate(-50%,-50%);
-      }
+.heart, .echo {
+  z-index: 999;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  -webkit-animation-name: heartbeat;
+          animation-name: heartbeat;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+  -webkit-animation-duration: 1500ms;
+          animation-duration: 1500ms;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1.74);
+          animation-timing-function: cubic-bezier(0, 0, 0, 1.74);
+}
+
+.heart::before, .echo::before {
+  position: absolute;
+  left:25px;
+  content: '';
+  width: 25px;
+  height: 40px;
+  background: #e23f3f;
+  border-radius: 25px 25px 0 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;
+}
+
+.heart::after, .echo::after {
+  position: absolute;
+  content: '';
+  width: 25px;
+  height: 40px;
+  border-radius: 25px 25px 0 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+  background: #e23f3f;
+}
+
+.echo {
+  -webkit-animation-name: echo;
+          animation-name: echo;
+}
+@keyframes echo {
+  0% {
+    opacity: 0.3;
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+}
+@keyframes heartbeat {
+  0% {
+    -webkit-transform: scale(0.85);
+            transform: scale(0.85);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.85);
+            transform: scale(0.85);
+  }
+}
     </style>
   </head>
   <body>
     <div class="watch-container">
       <div class="watch-face">
-        <div class="my-boby">你好啊 晶宝贝!</div>
+        <div class="heart">
+            <i></i>
+        </div>
         <div class="handler watch-second"></div>
         <div class="handler watch-minute"></div>
         <div class="handler watch-hour"></div>

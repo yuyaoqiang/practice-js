@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body,div,p{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+        }
+        .panels{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .panel{
+            flex: 1;
+            display: flex;
+            color: white;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            align-items:center;
+            background-size: cover;
+            background-position: center;
+            transition: 
+                font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+                flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+                 background 0.2s;
+            box-shadow:inset 0 0 0 5px rgba(255,255,255,0.1);
+        }
+        .panel >*{
+            margin: 0;
+            width: 100%;
+            transition: transform 0.5s;
+            display: flex;
+            flex: 1 0 auto;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .panel > *:first-child{
+            transform: translateY(-100%);
+        }
+        .panel.open-active > *:first-child{
+            transform: translateY(0);
+        }
+        .panel > *:last-child{
+            transform: translateY(100%);
+        }
+        .panel.open-active > *:last-child{
+            transform: translateY(0);
+        }
+        .panel > p{
+            text-transform: uppercase;
+            font-family: 'Amatic SC', cursive;
+            text-shadow:0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+            font-size: 2em;
+        }
+        .panel > p:nth-child(2){
+            font-size: 4rem;
+        }
+        .open{
+            flex: 5;
+        }
+        .panel-1{background-image: url("./1.JPG")}
+        .panel-2{background-image: url("./2.JPG")}
+        .panel-3{background-image: url("./3.JPG")}
+        .panel-4{background-image: url("./4.JPG")}
+        .panel-5{background-image: url("./5.JPG")}
+        </style>
+    </head>
+    <body>
+        <section class="panels">
+            <div class="panel panel-1">
+                <p>A</p>
+                <p>B</p>
+                <p>C</p>
+
+            </div>
+            <div class="panel panel-2">
+                <p>D</p>
+                <p>E</p>
+                <p>F</p>
+            </div>
+            <div class="panel panel-3">
+                <p>G</p>
+                <p>H</p>
+                <p>I</p>
+            </div>
+            <div class="panel panel-4">
+                <p>J</p>
+                <p>K</p>
+                <p>L</p>
+            </div>    
+            <div class="panel panel-5">
+                <p>M</p>
+                <p>N</p>
+                <p>Y</p>
+            </div> 
+        </section>
+        <script>
+        function toggleOpen(){
+            this.classList.toggle("open")
+        }
+        function toggleActive() {
+            this.classList.toggle("open-active")
+            }
+        let panels =  document.querySelectorAll(".panel");    
+        panels.forEach(panel=>{panel.addEventListener("click",toggleOpen)});
+        panels.forEach(panel=>{panel.addEventListener("transitionend",toggleActive)});
+        </script>
+    </body>
+</html>
