@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .drag{
+    position: absolute;
+    line-height: 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: .5rem;
+    border-radius: 99px;
+    text-align: center;
+    color: #fff;
+    background: #2196f3;
+  }
+</style>
+<body>
+    <div id="drag" class="drag">拖动</div>
+</body>
+<script src="./my_drag.js"></script>
+<script>
+  new Drag(document.getElementById("drag"),{edge:{rigth:10,bottom:10}});
+</script>
+</html>
